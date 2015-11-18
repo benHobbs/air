@@ -63,12 +63,18 @@ app.get('/restart-emf', function(req, res) {
 
 app.get('/reboot', function(req, res) {
   res.send('Rebooting');
-  //exec('shutdown -h now');
+  exec('shutdown -h now', function (error, stdout, stderr) {
+    sys.print('stdout: ' + stdout);
+    sys.print('stderr: ' + stderr);
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }
+  });
 });
 
 app.get('/shutdown', function(req, res) {
   res.send('Shutting Down');
-  //exec("shutdown -h now");
+  exec("shutdown -h now");
 });
 
 io.on('connection', function(socket){
