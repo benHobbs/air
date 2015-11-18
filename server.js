@@ -21,7 +21,7 @@ function startEmfReader (){
 
     console.log('EMF Reader\tStarting');
 
-    var shell = new PythonShell('./py/server.py', { mode: 'text',pythonOptions: ['-u'] });
+    var shell = new PythonShell('./py/reader.py', { mode: 'text',pythonOptions: ['-u'] });
 
     shell.on('message', function (msg) {
       io.emit('update',msg.toString());
