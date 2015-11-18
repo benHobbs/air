@@ -8,6 +8,9 @@ var net = require('net');
 var path = require('path');
 var PythonShell = require('python-shell');
 
+var sys = require('util');
+var exec = require('child_process').exec;
+
 // traditional variables
 var emfreaderstatus = false;
 
@@ -58,11 +61,21 @@ app.get('/restart-emf', function(req, res) {
   res.send(response);
 });
 
+app.get('/reboot', function(req, res) {
+  res.send('Rebooting');
+  //exec('shutdown -h now');
+});
+
+app.get('/shutdown', function(req, res) {
+  res.send('Shutting Down');
+  //exec("shutdown -h now");
+});
+
 io.on('connection', function(socket){
   console.log('IO:\t\tA user connected');
 });
 
-http.listen(3001, function(){
-  console.log('Server:\t\tlistening on localhost:3001');
+http.listen(3000, function(){
+  console.log('Server:\t\tlistening on localhost:3000');
   startEmfReader();
 });
