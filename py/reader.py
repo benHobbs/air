@@ -149,5 +149,6 @@ def emfreader(verbose):
 while True:
   try:
     emfreader(false)
-  except:
+  except Exception as e: 
+    print e
     time.sleep(5)
