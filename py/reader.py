@@ -8,6 +8,7 @@
 
 #!/usr/bin/env python
 
+import sys
 import serial
 import time
 import datetime
@@ -148,7 +149,8 @@ def emfreader(verbose):
 # brute force runner
 while True:
   try:
-    emfreader(false)
+    emfreader(False)
   except Exception as e: 
-    print e
+    if len(sys.argv) > 1 and sys.argv[1] == "v":
+        print e
     time.sleep(5)
